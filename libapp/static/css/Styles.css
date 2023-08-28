@@ -1,0 +1,847 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* background-color: #eedaee;
+background-image: linear-gradient(0deg, #ffeaffd0 0%, #e2fdff 100%); */
+background: rgb(255,255,255);
+background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(212,229,252,1) 0%, rgba(224,237,255,1) 35%, rgba(215,232,255,1) 53%, rgba(193,217,251,1) 79%, rgba(196,221,255,1) 100%, rgba(75,145,241,1) 100%);
+background-attachment: fixed;
+min-height: 100vh;
+
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 30px;
+  border: 1px solid rgba(74, 195, 255, 0.57);
+  text-transform: uppercase;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.185);
+}
+
+.Mmenu {
+  width: 20%;
+}
+
+.navbar .menu {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar .Mmenu a {
+  text-decoration: none;
+  color: black;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.navbar .Mmenu a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    90deg,
+    rgb(0, 47, 255),
+    rgb(0, 47, 255)
+  ); /* underline color */
+  background-size: 0 2px; /* vertical size of underline */
+  background-repeat: no-repeat;
+  background-position: left bottom; /* start position of underline */
+  transition: background-size 0.3s ease-in; /* duration and timing style of animation */
+}
+
+.navbar .Mmenu a:hover::before {
+  background-size: 100% 2px;
+}
+
+.searchbar {
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  height: 45px;
+  border: 1px solid rgba(0, 0, 0, 0.212);
+  border-radius: 60px;
+  box-shadow: 0 8px 20px 0 rgba(31, 38, 135, 0.068);
+}
+
+.searchbar input {
+  background: transparent;
+  border: 0;
+  outline: none;
+  font-size: 16px;
+  flex: 1;
+}
+
+.searchbar button {
+  border: 0;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background: rgba(96, 96, 96, 0.414);
+  cursor: pointer;
+}
+
+.searchbar button img {
+  width: 20px;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  outline: none;
+  border: 0;
+  justify-content: space-between;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #333;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.welcome-text {
+  position: relative;
+  top: 10vh;
+  font-size: 4rem;
+  font-weight: 400;
+  word-spacing: -1.5%;
+  color: white;
+  text-shadow: 0 0 5px black;
+}
+.Ops {
+  color: aqua;
+}
+.wrapper {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  perspective: 10px;
+}
+
+header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  transform-style: preserve-3d;
+  z-index: -1;
+}
+
+.background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.background0 {
+  transform: translateZ(-29px) scale(3.9);
+}
+
+.background1 {
+  top: 20px;
+  transform: translateZ(-22px) scale(3.2);
+}
+
+.background2 {
+  top: 40px;
+  transform: translateZ(-16px) scale(2.6);
+}
+
+.background3 {
+  top: 60px;
+  transform: translateZ(-9px) scale(1.9);
+}
+
+.background4 {
+  top: 100px;
+  transform: translateZ(-2px) scale(1.2);
+}
+
+
+.homePart {
+  margin-top: 200px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background: rgb(255,255,255);
+background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(212,229,252,1) 0%, rgba(224,237,255,1) 35%, rgba(215,232,255,1) 53%, rgba(193,217,251,1) 79%, rgba(196,221,255,1) 100%, rgba(75,145,241,1) 100%);
+  display: flex;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  justify-content: space-evenly;
+}
+
+.homeInfo{
+  width:60%;
+  background: rgba(255, 255, 255, 0.597);
+  border-radius: 15px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(174, 174, 174, 0.577);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.137);
+  padding: 30px;
+
+}
+
+.homeInfo p{
+  font-size: 17px;
+  line-height: 25px;
+  padding-top: 25px;
+}
+
+.tagline{
+  font-size: 20px;
+}
+
+.nameAndTag{
+  display: flex;
+  align-items: center;
+}
+
+.logoName{
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.homeExplore{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.597);
+  border-radius: 15px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(174, 174, 174, 0.577);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.137);
+  transition-duration: 300ms;
+}
+
+.homeExplore:hover{
+  transform: scale(1.04);
+}
+
+.homeOptions{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.homeOptions a{
+  text-decoration: none;
+  color: #4B91F1;
+  font-size: 20px;
+}
+
+.homeOptions span{
+  padding: 5px;
+}
+
+.homeExplore img{
+  border-radius: 15px;
+}
+
+.homeBg{
+  background: white;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+}
+
+.navbar {
+  position: fixed;
+  height: 80px;
+  width: 100%;
+  background-color: white;
+  z-index: 100;
+}
+
+
+/* Style the button to look like a dropdown button */
+.dropbtn {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #333;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+  text-transform: none;
+  display: none;
+  position: absolute;
+  right: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  min-width: 130px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  font-size: 16px;
+  border-radius: 5px;
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+/* Show the dropdown content when the button is clicked */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.notification .notificationDropdown-content {
+  display: none;
+  position: absolute;
+  top: 80px;
+  right: 100px;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  border-radius: 4px;
+  z-index: 1;
+  transition-duration: 300ms;
+}
+
+.notification .notificationDropdown-content.active {
+  display: block;
+}
+
+
+
+/* explore.css */
+.explorebody{
+  padding-top: 80px;
+}
+
+.user-dashboard{
+  padding-top: 80px;
+}
+/* Sidebar Styles */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  float: left;
+  height: 100vh;
+  width: 230px;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.filter-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Main Content Styles */
+.main-content {
+  margin-left: 230px; /* To make space for the sidebar */
+  padding: 20px;
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  min-height: 90vh;
+}
+
+/* Book Tile Styles */
+.book-tile {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 500px;
+  border: 1px solid #ccc;
+  margin: 15px;
+  padding: 10px;
+  justify-content: space-around;
+  align-items:start;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 15px;
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(174, 174, 174, 0.577);
+      box-shadow: 0 8px 8px rgba(0, 0, 0, 0.137);
+  transition-duration: 300ms;
+  
+}
+
+.book-tile:hover{
+  transform: scale(1.05);
+}
+
+.book-tile img{
+  border-radius: 15px;
+}
+
+.book-tile form{
+  align-self: center;
+  margin-top: 10px;
+}
+/* Add more styles for the book tiles as needed */
+
+.sidebarHead{
+  font-size: 24px;
+
+}
+
+.sidebarHeadD{
+  font-size: 24px;
+  padding-left: 20px;
+}
+
+.filterboxes{
+  padding-bottom: 10px;
+}
+
+.applyfilterbtn{
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  background: transparent;
+  border: 1px solid black;
+  border-radius: 60px;
+  padding: 10px;
+  cursor: pointer;
+  transition-duration: 300ms;
+}
+
+.applyfilterbtn:hover{
+  background: rgba(153, 153, 153, 0.288);
+}
+
+.userDetails{
+  padding: 10px 20px;
+  border-radius: 15px;
+  background-color: white;
+  width: 280px;
+  margin: 10px;
+}
+
+.sidebarD {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  position: fixed;
+  float: left;
+  height: 100vh;
+  width: 350px;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.userDcon{
+  margin-top: 20px;
+
+}
+
+.main-contentD {
+  margin-left: 350px; /* To make space for the sidebar */
+  padding: 20px;
+  min-height: 90vh;
+  
+}
+
+.main-contentD h2{
+  padding-left: 20px;
+  padding-bottom: 20px;
+  font-weight: 400;
+}
+
+.dashboardBooksCon{
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+.book-tileD {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  height: 420px;
+  border: 1px solid #ccc;
+  margin: 15px;
+  padding: 10px;
+  justify-content: space-around;
+  align-items:start;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(174, 174, 174, 0.577);
+      box-shadow: 0 8px 8px rgba(0, 0, 0, 0.137);
+  transition-duration: 300ms;
+  
+}
+
+.book-tileD:hover{
+  transform: scale(1.05);
+}
+
+.book-tileD img{
+  border-radius: 15px;
+}
+
+.book-tileD form{
+  align-self: center;
+  margin-top: 10px;
+}
+
+.userbooksCon{
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  border: 3px solid #4B91F1;
+  border-radius: 15px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
+.userh2{
+  padding-left: 30px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.addNewBookbtn{
+  align-self: center;
+  margin-top: 20px;
+}
+
+body{
+  margin: 0;
+  }
+  .log {
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('{% static ".jpg" %}');;
+      background-size: cover;
+    }
+    .log1 {
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("Images/reg.jpg");
+      background-size: cover;
+    }
+  .glass-container {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+  
+    .glass-container h2 {
+      font-family: 'Lato', sans-serif;
+      color:#f0f0f0;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    .glass-container  .formi input {
+      color:#f0f0f0;
+      width: 90%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      background: rgba(255, 255, 255, 0.3);
+      font-family: 'Poppins', sans-serif;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+      backdrop-filter: blur(8px);
+    }
+  
+    .glass-container button {
+      width: 90%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #77c5d5, #61a4d8);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+  
+    .glass-container button:hover {
+      background: linear-gradient(135deg, #61a4d8, #77c5d5);
+    }
+  
+    .check{
+      color:#f0f0f0;
+      padding-left: 15px;
+      text-align: justify;
+      font-family: 'Poppins', sans-serif;
+      padding-bottom: 10px;
+    }
+
+  
+/* about us */
+.aboutUsPage{
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 120px;
+  background-image: url("../Images/reg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+}
+
+.aboutus{
+  /* margin: 20px; */
+  width:45vw;
+  background: rgba(0, 0, 0, 0.777);
+  backdrop-filter: blur(50px);
+  color: #fff;
+  padding: 40px;
+  font-size: 15px;
+  line-height: 25px;
+  font-weight: 300;
+  border-radius: 20px;
+  transition-duration: 300ms;
+  height: 80vh;
+}
+
+.aboutus p{
+  padding-top: 20px;
+}
+
+.aboutus h1{
+  font-size: 40px ;
+  font-weight: 400;
+  padding: 15px 15px 15px 0;
+}
+
+.madeby{
+  /* margin: 20px; */
+  width: 45vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: rgba(0, 0, 0, 0.777);
+  backdrop-filter: blur(50px);
+  color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 15px;
+  line-height: 25px;
+  font-weight: 300;
+  border-radius: 20px;
+  transition-duration: 300ms;
+  height: 80vh;
+}
+
+.madeby h1{
+  font-size: 40px ;
+  font-weight: 400;
+  padding: 10px;
+  text-align: center;
+}
+
+
+.contributer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 20px 0 10px 0 ;
+  padding: 20px;
+  width: 300px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(50px);
+  color: #fff;
+  border-radius: 20px;
+  height: 120px;
+}
+
+.contributer img{
+  height: 15px;
+}
+
+.contributer p{
+  padding: 5px 3px;
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.email{
+  padding: 3px;
+}
+
+.phoneNo{
+  padding: 3px;
+}
+
+.contrib-con{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+.update_book_page{
+  padding-top: 80px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.update_book_page h2{
+  font-weight: 300;
+  padding-bottom: 20px;
+}
+
+.updateCon{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 15px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(174, 174, 174, 0.577);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.137);
+  width: 760px;
+}
+
+.updateImg{
+  display: flex;
+  flex-direction: column;
+}
+
+.updateFieldsCon{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+}
+
+
+.formiU{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 5px;
+}
+
+.formiU label{
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+
+.formiU input, .formiU textarea{
+  background: rgba(236, 236, 236, 0.75);
+  border-radius: 15px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(174, 174, 174, 0.577);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.137);
+  padding: 5px 10px;
+  width: 220px;
+}
+
+.formiU img{
+  height: 320px;
+  width: 220px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+.formiU #description{
+  height: 250px;
+}
+
+.page__footer {
+  display: flex;
+  width: 100%;
+  color: #ffffff;
+  /* background-color: #212121; */
+  background: #4B91F1;
+  border: 1px solid rgba(0, 170, 255, 0.57);
+  backdrop-filter: blur(30px);
+  justify-content: center;
+  bottom: 0;
+  }
+
+.footer-content {
+  display: grid;
+  width: 100%;
+  max-width: 52em;
+  padding: 2em 2em;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.page__footer ul,
+.page__footer p {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+footer a {
+  text-decoration: none;
+  transition-duration: 300ms;
+}
+
+footer a:hover,
+footer a:active,
+footer a:focus {
+  text-decoration: underline;
+}
+
+footer a,
+footer a:hover,
+footer a:active,
+footer a:focus,
+footer a:visited {
+  color: inherit;
+  font-size: 0.8em;
+}
+
+.footer-col h4 {
+  margin: 0.5em 0;
+}
+

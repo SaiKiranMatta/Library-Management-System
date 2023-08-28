@@ -1,0 +1,241 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReadOps-LMS</title>
+    <link rel="stylesheet" href="{% static 'css/Styles.css'%}" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{%static 'Images/apple-touch-icon.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{%static 'Images/favicon-32x32.png'%}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{%static 'Images/favicon-16x16.png'%}"
+    />
+    <link rel="manifest" href="{%static 'Images/site.webmanifest'%}" />
+    <link
+      rel="mask-icon"
+      href="{%static 'Images/safari-pinned-tab.svg'%}"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="/">
+      <img
+        src="{%static 'Images/logo-no-background.png'%}"
+        alt="ReadOps"
+        height="40px"
+      />
+      </a>
+      <div class="menu Mmenu">
+        <a href="/">Home</a>
+        {% if user.is_librarian %}
+            <a href="explore">Update Books</a>
+        {% else %}
+            <a href="explore">Explore</a>
+        {% endif %}
+        <a href="aboutus">About us</a>
+      </div>
+      <form action="{% url 'explore' %}" class="searchbar">
+        <input type="text" placeholder="Search Books/Dept/Author" name="q" />
+        <button type="submit">
+          <img src="{%static 'Images/search.png'%}" alt="search" />
+        </button>
+      </form>
+      <button class="notification" onclick="toggleNotifications()">
+        <img
+          src="{%static 'Images/notification.png'%}"
+          alt=""
+          height="25px"
+        /><span> ALERTS</span>
+        <div id="notificationDropdown" class="notificationDropdown-content">
+          {% if user.notifications %}
+            {% for notification in user.notifications %}
+              <p>Reminder to return {{ notification.title }} by {{ notification.end_date }}</p>
+            {% endfor %}
+          {% else %}
+            <p>No notifications</p>
+          {% endif %}
+        </div>
+      </button>
+      <div class="menu">
+        <div id="user-info">
+          {% if user.is_authenticated %}
+          <div class="dropdown">
+            <button class="dropbtn">{{ user.username }}</button>
+            <div class="dropdown-content">
+              <a href="{% if user.is_librarian %}ldashboard{% else %}dashboard{% endif %}" id="username">Dashboard</a>
+              <a href="{% url 'logout' %}">Logout</a>
+            </div>
+          </div>
+          {% else %}
+            <div class="Mmenu">
+              <a href="{% url 'login' %}" >Login</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="wrapper">
+        <header>
+          <img
+            src="{% static 'Images/Background.jpg' %}"
+            alt=""
+            class="background background0"
+          />
+          <img
+            src="{% static 'Images/4layers.png' %}"
+            alt=""
+            class="background background1"
+          />
+          <img
+            src="{% static 'Images/3layers.png' %}"
+            alt=""
+            class="background background2"
+          />
+          <img
+            src="{% static 'Images/2layers.png' %}"
+            alt=""
+            class="background background3"
+          />
+          <img
+            src="{% static 'Images/1layer.png' %}"
+            class="background background4"
+          />
+          <h1 class="welcome-text">Welcome to Read<span class="Ops">Ops</span></h1>
+        </header>
+        {% comment %} <div class="homeBg">
+      
+        </div> {% endcomment %}
+        <div class="homePart">
+          <div class="homeInfo">
+            <div class="nameAndTag">
+              <a href="/" class="logoName">
+                <img
+                  src="{%static 'Images/logo-no-background.png'%}"
+                  alt="ReadOps"
+                  height="40px"
+                />
+                </a>  <span class="tagline">   Library Management System</span>
+              </div>
+              <p align = "justify">ReadOps is a cutting-edge library management system designed to revolutionize the way libraries function, ensuring seamless organization, efficient operations, and enhanced user experiences. In today's fast-paced world, libraries need a comprehensive and user-friendly solution to manage their resources effectively. ReadOps is the answer to the ever-evolving needs of libraries, empowering them to deliver exceptional services to their patrons..</p>
+              <p align = "justify">In the digital age, where technology has transformed various aspects of our lives, libraries also need to adapt and embrace modern solutions to efficiently manage their resources and services. One such powerful tool is "ReadOps," a comprehensive library management system designed to streamline and enhance library operations. ReadOps is more than just a traditional cataloging software; it is a robust and user-friendly platform that empowers librarians and library staff to deliver a seamless experience to their users.</p>
+              <p align = "justify">ReadOps represents the future of library management systems, catering to the needs of modern libraries and their tech-savvy patrons. With its seamless integration of traditional and digital resources, user-centric approach, and data-driven insights, ReadOps empowers libraries to provide exceptional services and remain relevant in an increasingly digital world. Embracing ReadOps is a step towards creating vibrant and dynamic libraries that continue to enrich communities and promote knowledge dissemination.</p>
+            </div>
+            <div class="homeOptions">
+              <a href="explore" class="homeExplore"><img src="{% static 'Images/Explore books.jpg' %}" width="300px" height="220px">
+                <span>
+                  {% if user.is_librarian %}
+                    Update Books
+                  {% else %}
+                    Explore
+                  {% endif %}
+                </span>
+              </a>
+              <a href="aboutus" class="homeExplore"><img src="{% static 'Images/aboutusIcon.jpg' %}" width="300px" height="220px"><span>About</span></a>
+            </div>
+        </div>
+        <footer class="page__footer">
+          <div class="footer-content">
+            <div class="footer-col">
+              <h4>ReadOps</h4>
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="aboutus">About</a></li>
+                <li><a href="explore">Explore</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+    
+            <div class="footer-col">
+              <h4>Find us on</h4>
+              <ul>
+                <li>
+                  <a
+                    href="https://www.instagram.com/tourismgoi/?hl=en"
+                    target="_blank"
+                    rel="noopener"
+                    >Instagram</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.youtube.com/channel/UCMxJPchGLE_CJ1MJbJy-xDQ"
+                    target="_blank"
+                    rel="noopener"
+                    >YouTube</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://twitter.com/tourismgoi"
+                    target="_blank"
+                    rel="noopener"
+                    >Twitter</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.facebook.com/incredibleindia/"
+                    target="_blank"
+                    rel="noopener"
+                    >Facebook</a
+                  >
+                </li>
+              </ul>
+            </div>
+    
+            <div class="footer-col">
+              <h4>&copy; ReadOps</h4>
+              <p>
+                <a
+                  rel="license"
+                  href="http://creativecommons.org/licenses/by-nc-sa/2.0/"
+                >
+                  <img alt="Creative Commons License" src="{%static 'Images/license.png'%}"/>
+                </a>
+              </p>
+              <p>
+                <a href="http://cbit.ac.in" target="_blank" rel="noopener"
+                  >Chaitanya Bharathi Institute of Technology</a
+                >
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    
+    <script>
+      function toggleNotifications() {
+        const notificationDropdown = document.getElementById("notificationDropdown");
+        notificationDropdown.classList.toggle("active");
+      }
+    
+      // Close the notifications dropdown if user clicks outside of it
+      window.addEventListener("click", function (event) {
+        const notificationDropdown = document.getElementById("notificationDropdown");
+        if (!event.target.closest(".notification")) {
+          notificationDropdown.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
+</html>
+
+

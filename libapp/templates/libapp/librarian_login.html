@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glassmorphism Login Page</title>
+  <link rel="stylesheet" href="{% static  'css/Styles.css'%}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<style>
+  .log {
+    background-image: url("{% static 'Images/log.jpg' %}");
+  }
+</style>
+</head>
+<body>
+  
+    <div class="log" >
+      
+  <div class="glass-container">
+    {% if  messages %}
+                  {% for message in messages %}
+                    <div class="alert alert-warning" role="alert">
+                      {{message}}
+                      
+                    </div>
+                  
+                  {% endfor %}
+                {% endif %}
+      
+              {% block content %}
+              {% endblock %}
+    </form>
+    <h2>Librarian Login</h2>
+    <form action="login_librarian" method="post">
+      {% csrf_token %}
+    <div class="formi">
+      <input type="text" placeholder="Username" name="username" required>
+    </div>
+    <div class="formi">
+        <input type="password" placeholder="Password" name="password" required>
+      </div>
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

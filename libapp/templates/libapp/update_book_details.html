@@ -1,0 +1,53 @@
+{% extends 'libapp/base.html' %} 
+{% block title%}Update Details{%endblock %} 
+{% load static %}
+
+{% block content %}
+  <div class="update_book_page"> 
+  <h2>UPDATE BOOK DETAILS</h2>
+  <form action="{% url 'save_book_details' book.pk %}" method="post" enctype="multipart/form-data" class="updateCon">
+    {% csrf_token %}
+    <div class="formiU">
+      {% if book.image %}
+        <img src="{{ book.image.url }}" alt="{{ book.title }}">
+      {% endif %}
+      <input type="file" id="image" name="image">
+    </div>
+    <div class="updateFieldsCon">
+      <div class="formiU">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ book.title }}" required>
+      </div>
+
+      <div class="formiU">
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" value="{{ book.author }}" required>
+      </div>
+
+      <div class="formiU">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="{{ book.quantity }}" required>
+      </div>
+
+      <div class="formiU">
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" value="{{ book.department }}" required>
+      </div>
+
+      <div class="formiU">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" value="{{ book.subject }}" required>
+      </div>
+
+      
+    </div>
+    <div class="updateFieldsCon">
+      <div class="formiU">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required>{{ book.description }}</textarea>
+      </div>
+      <button type="submit" class="applyfilterbtn">Save Changes</button>
+    </div>
+  </form>
+  </div>
+{% endblock %}

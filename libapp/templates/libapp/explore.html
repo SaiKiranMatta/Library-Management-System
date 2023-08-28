@@ -1,0 +1,93 @@
+{% extends 'libapp/base.html' %} 
+ {% block title%}Explore{%endblock %} 
+ {% block content %} {% load static %}
+ <div class="explorebody">
+ <!-- Sidebar with Cascading Filters -->
+ <div class="sidebar">
+    <form method="get" id="filter-form">
+        {% csrf_token %}
+        <label for="id_department" class="sidebarHead">Department</label>
+        <br/>
+        <br/>
+        <hr/>
+        <br/>
+        {% for department_value, department_label in form.department.field.choices %}
+            <div class="filterboxes">    
+                <input type="radio" id="id_department_{{ forloop.counter0 }}"
+                    name="department" value="{{ department_value }}"
+                    {% if department_value == form.department.value %}checked{% endif %}>
+                <label for="id_department_{{ forloop.counter0 }}">{{ department_label }}</label>
+                <br/>
+            </div>
+        {% endfor %}
+
+        <br>
+
+        <label class="sidebarHead">Subjects:</label><br>
+        <br/>
+
+        <hr/>
+        <br/>
+        {% for subject_value, subject_label in form.subjects.field.choices %}
+            <div class="filterboxes">
+                <input type="radio" id="id_subject_{{ forloop.counter0 }}"
+                    name="subjects" value="{{ subject_value }}"
+                    {% if subject_value in form.subjects.value %}checked{% endif %} >
+                <label for="id_subject_{{ forloop.counter0 }}">{{ subject_label }}</label>
+                <br/>
+            </div>
+        {% endfor %}
+
+        <br>
+
+        <button type="submit" class="applyfilterbtn">Apply Filters</button>
+    </form>
+</div>
+
+    <!-- Main Content: Books Displayed as Tiles -->
+    <div class="main-content" id="books-container">
+       
+        {% for book in books %}
+        <div class="book-tile">
+            {% if book.image %}
+            <img src="{{ book.image.url }}" alt="{{ book.title }} " height="180px" width="180px">
+            {% endif %}
+            <h3>{{ book.title }}</h3>
+            <p>Author: {{ book.author }}</p>
+            <p>Quantity: {{ book.quantity }}</p>
+            <p>Department: {{ book.department }}</p>
+            <p>Subject: {{ book.subject }}</p>
+            {%if user.is_librarian %}
+                <form action="{% url 'update_book_details' book.pk %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="book" value="{{ book.pk }}">
+                    <button type="submit" class="applyfilterbtn">Update Book Details</button>
+                </form>
+            {% else %}
+                <form action="{% url 'book_request' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="book" value="{{ book.pk }}">
+                    <button type="submit" class="applyfilterbtn">Take Book</button>
+                </form>
+            {% endif %}
+        </div>
+        
+        {% empty %}
+        <p>No books found with selected filters.</p>
+        {% endfor %}
+        {%if user.is_librarian %}
+        <div class="book-tile">
+            <img src="{% static 'Images/addbook.png' %}" alt="Add Book" height="180px" width="180px">
+            <h3>Book Title</h3>
+            <p>Author: </p>
+            <p>Quantity: </p>
+            <p>Department: </p>
+            <p>Subject: </p>
+            <form action="{% url 'add_new_book' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="applyfilterbtn">Add Book</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

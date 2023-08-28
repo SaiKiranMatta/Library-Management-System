@@ -1,0 +1,49 @@
+{% extends 'libapp/base.html' %}
+{% block title%}Add New Book{% endblock %}
+{% load static %}
+
+{% block content %}
+  <div class="update_book_page">
+    <h2>ADD NEW BOOK</h2>
+    <form action="{% url 'save_new_book' %}" method="post" enctype="multipart/form-data" class="updateCon">
+      {% csrf_token %}
+      <div class="formiU">
+        <img src="{% static 'Images/addbook.png' %}" alt="Add Book">
+        <input type="file" id="image" name="image">
+      </div>
+      <div class="updateFieldsCon">
+        <div class="formiU">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+
+        <div class="formiU">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required>
+        </div>
+
+        <div class="formiU">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required>
+        </div>
+
+        <div class="formiU">
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" required>
+        </div>
+
+        <div class="formiU">
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+        </div>
+    </div>
+    <div class="updateFieldsCon">
+        <div class="formiU">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="applyfilterbtn">Add Book</button>
+    </div>
+    </form>
+  </div>
+{% endblock %}

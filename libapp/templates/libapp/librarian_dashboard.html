@@ -1,0 +1,63 @@
+{% extends 'libapp/base.html' %}
+
+{% block title %}Librarian Dashboard{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="user-dashboard">
+    <div class="sidebarD">
+        <div class="userDcon">
+            <div class="sidebarHeadD">Name:</div>
+            <p class="userDetails">{{ librarian.username }}</p>
+        </div>
+
+        <div class="userDcon">
+            <div class="sidebarHeadD">Email:</div>
+            <p class="userDetails">{{ librarian.email }}</p>
+        </div>
+
+        <div class="userDcon">
+            <div class="sidebarHeadD">Phone:</div>
+            <p class="userDetails">{{ librarian.phone }}</p>
+        </div>
+
+        <div class="addNewBookbtn">
+            <form action="{% url 'add_new_book' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="applyfilterbtn">Add New Book</button>
+            </form>
+        </div>
+        
+        <!-- Add more user details as needed -->
+    </div>
+
+    <div class="main-contentD">
+        <h2>Books Taken:</h2>
+        {% for user in users_with_books %}
+            <div class="userbooksCon">
+                <p class="userh2">{{ user.username }}<p>
+                <div class="dashboardBooksCon ">
+                
+                    {% for book in user.books %}
+                        <div class="book-tileD">
+                            {% if book.image %}
+                                <img src="{{ book.image }}" alt="{{ book.title }}" height="200px" width="200px">
+                            {% endif %}
+                            <h3>{{ book.title }}</h3>
+                            <p>Start Date: {{ book.start_date|date:"Y-m-d" }}</p>
+                            <p>End Date: {{ book.end_date|date:"Y-m-d" }}</p>
+
+                            <form action="{% url 'remind_user' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="user_id" value="{{ user.id }}">
+                                <input type="hidden" name="book_id" value="{{ forloop.counter0 }}">
+                                <button type="submit" class="applyfilterbtn">Remind User</button>
+                            </form>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
